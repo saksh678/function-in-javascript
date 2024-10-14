@@ -1,0 +1,171 @@
+Q1 Create an arrow function called square that takes a number as an argument and
+ returns its square. Use the arrow function to calculate the square of a given number
+ and display the result.
+ ans.  // we use arrow function to calculate square:
+
+const square = (num) => num ** 2;
+const number = 5;
+const result = square(number);
+console.log( `the square of ${number} is ${result}.`);
+// output is : the square of 5 is 25;
+
+explanation :
+the arrow function square take single argumnet num. the ** operator is the square 
+of the number. the function returns the square value.
+
+
+ Q2. Create a JavaScript function called generateGreeting that takes a name as 
+ an argument and returns a personalized greeting message. Use this function
+ to greet three different people.
+ ans. // a JavaScript function is using for generategreeting.
+
+// function for generateGreeting.
+function generateGreeting(name){
+   let greet =  `hello ${name} welcome`;
+     return greet;
+   };
+   
+   const name1 = "alia";
+   const name2 = "virat";
+   const name3 = "vikas";
+   
+   console.log(generateGreeting(name1));
+   console.log(generateGreeting(name2));
+   console.log(generateGreeting(name3));
+
+
+output:
+hello alia welcome;
+hello virat welcome;
+hello vikas welcome;.
+
+
+ Q3. Create an IIFE (Immediately Invoked Function Expression) that calculates
+  the square of a number and immediately displays the result.
+  ans. 
+  we using iife to calculate the square of number;
+
+  // iife function to calculate square 
+
+(function(num){
+  let number = num ** 2;
+  console.log(`the square of ${num} is ${number}`);
+})(6);
+
+output:
+
+the square of 6 is 36;
+
+
+ Q4. Write a JavaScript function called calculateTax that takes an income as
+  an argument and returns the amount of tax to be paid. Use a closure to handle
+ different tax rates based on income ranges. Test the function with various incomes.
+ ans. 
+     here is a javascript function called calculateTax using closure.
+
+   const calculateTax = (() => {
+    const taxRate = [
+        {max: 10000, rate: 0.10},
+        {max: 50000, rate: 0.20},
+    ];
+    return(income) => {
+        let tax = 0;
+        let perMax = 0;
+    
+    taxRate.forEach((rate) => {
+      const taxableAmount = Math.min(income,rate.max) - perMax;
+      tax += taxableAmount * rate.rate;
+      perMax =  rate.max;
+    });
+  return tax; 
+  };
+ })();
+
+// test the fuction with various income;
+
+ console.log(`Tax on 20000: ${calculateTax(20000).toFixed(2)}`);
+     console.log(`Tax on 50000: ${calculateTax(50000).toFixed(2)}`);
+
+
+output:
+
+Tax on 20000: 3000.00
+index.js:22 Tax on 50000: 9000.00;
+
+ Q6. Write a JavaScript function called curry that takes a function as an argument
+  and returns a curried version of that function. The curried function
+ should accept arguments one at a time and return a new function until all arguments
+ are provided. Then, it should execute the original function with all arguments. 
+Test the curry function with a function that adds two numbers.
+ans. 
+here is the javascript function called curry..
+
+//function to curry another function
+
+function curry(fn){
+    return function curried(...args){
+        if(args.length>= fn.length){
+            return fn(...args);
+        }else {
+            return function(...nextArgs){
+                return curried(...args.concat(nextArgs));
+            };
+        };
+    };
+}
+
+const add = (a,b) => a + b;
+const curried = curry(add);
+
+console.log(curried(2)(3));//experted output: 5;
+
+console.log(curried(2,3));//experted output: 5;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  Q5. Write a JavaScript function called factorial that calculates the factorial 
+  of a non-negative integer using recursion. Test the function with
+ different inputs.
+ ans. 
+ here is te javascript function calle factorial using recusion:
+
+ // the fuction to calculate factorial
+ function factorial(i){
+    if(i < 0){
+     throw new error("factorial is not defined for negative number");
+    }else if(i === 0|| i === 1){
+     return 1;
+    }else {
+     return i * factorial(i-1);
+    }
+  } 
+ 
+ console.log(` factorial of 0 is: ${factorial(0)}`);
+ console.log(` factorial of 1 is: ${factorial(1)}`);
+ console.log(` factorial of 3 is: ${factorial(3)}`);
+ console.log(` factorial of 35 is: ${factorial(35)}`);
+
+
+
+output:=
+ factorial of 0 is: 1;
+index.js:12  factorial of 1 is: 1
+index.js:13  factorial of 3 is: 6
+index.js:14  factorial of 35 is: 1.0333147966386144e+40;
